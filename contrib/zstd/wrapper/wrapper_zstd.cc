@@ -36,7 +36,7 @@ off_t FDGetSize(int fd) {
     return -1;
   }
 
-  return (size);
+  return size;
 }
 
 int ZSTD_compress_fd(int fdin, int fdout, int level) {
