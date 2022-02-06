@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef CONTRIB_ZOPFLI_UTILS_UTILS_ZOPFLI_H_
-#define CONTRIB_ZOPFLI_UTILS_UTILS_ZOPFLI_H_
+#ifndef CONTRIB_ZOPFLI_WRAPPER_WRAPPER_ZOPFLI_H_
+#define CONTRIB_ZOPFLI_WRAPPER_WRAPPER_ZOPFLI_H_
 
-absl::Status Compress(ZopfliApi& api, std::ifstream& instream,
-                      std::ofstream& outstream, ZopfliFormat format);
+#include "zopfli.h"
 
-absl::Status CompressFD(ZopfliApi& api, sapi::v::Fd& infd, sapi::v::Fd& outfd,
-                        ZopfliFormat format);
+extern "C" {
+int ZopfliCompressFD(const ZopfliOptions* options, ZopfliFormat output_type,
+                     int infd, int outfd);
+};
 
-#endif  // CONTRIB_ZOPFLI_UTILS_UTILS_ZOPFLI_H_
+#endif  // CONTRIB_ZOPFLI_WRAPPER_WRAPPER_ZOPFLI_H_

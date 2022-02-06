@@ -37,6 +37,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(libzopfli)
 
+add_subdirectory(wrapper)
+
 add_sapi_library(
   sapi_zopfli
 
@@ -49,12 +51,14 @@ add_sapi_library(
     ZopfliZlibCompress
     ZopfliGzipCompress
 
+    ZopfliCompressFD
   INPUTS
     ${libzopfli_SOURCE_DIR}/src/zopfli/deflate.h
     ${libzopfli_SOURCE_DIR}/src/zopfli/zlib_container.h
     ${libzopfli_SOURCE_DIR}/src/zopfli/gzip_container.h
+    wrapper/wrapper_zopfli.h
 
-  LIBRARY libzopfli
+  LIBRARY wrapper_zopfli
   LIBRARY_NAME Zopfli
   NAMESPACE ""
 )
