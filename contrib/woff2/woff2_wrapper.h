@@ -21,12 +21,12 @@
 
 extern "C" {
 
-bool WOFF2_ConvertWOFF2ToTTF(const uint8_t* data, size_t length,
-                             uint8_t** result, size_t* result_length,
-                             size_t max_size);
-bool WOFF2_ConvertTTFToWOFF2(const uint8_t* data, size_t length,
-                             uint8_t** result, size_t* result_length);
-void WOFF2_Free(uint8_t* data);
-}
+bool ConvertWOFF2ToTTF(uint8_t *result, size_t result_length,
+                       const uint8_t* data, size_t length);
+bool ConvertTTFToWOFF2(const uint8_t *data, size_t length,
+                       uint8_t *result, size_t *result_length);
+size_t MaxWOFF2CompressedSize(const uint8_t* data, size_t length);
+size_t ComputeWOFF2FinalSize(const uint8_t* data, size_t length);
+} // extern "C"
 
 #endif  // CONTRIB_WOFF2_WOFF2_WRAPPER_H_
