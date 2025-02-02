@@ -14,19 +14,23 @@
 
 include(GoogleTest)
 
-add_executable(
-  sapi_uriparser_test
+add_executable(woff2_sapi_test
 
-  test_uriparser.cc
+        woff2_sapi_test.cc
 )
 
 
-target_link_libraries(
-  sapi_uriparser_test PRIVATE
+target_link_libraries(woff2_sapi_test PRIVATE
+        absl::flags
+        absl::flags_parse
+        sapi_contrib::woff2
+        sapi::test_main
 
-  sapi_uriparser
-  sapi::test_main
-  uriparser
+        # testing raw WOFF2
+        PkgConfig::WOFF2_ENC
+        PkgConfig::WOFF2_DEC
+        PkgConfig::WOFF2_COMMON
 )
 
-gtest_discover_tests(sapi_uriparser_test)
+gtest_discover_tests(woff2_sapi_test PROPERTIES
+        ENVIRONMENT "TEST_DATA_DIR=${PROJECT_SOURCE_DIR}/testdata")

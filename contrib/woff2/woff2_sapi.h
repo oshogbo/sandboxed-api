@@ -41,6 +41,7 @@ class Woff2SapiSandbox : public WOFF2Sandbox {
             __NR_getpid,
             __NR_clock_gettime,
             __NR_madvise,
+            __NR_gettid,
         })
         .BuildOrDie();
   }

@@ -43,9 +43,10 @@ target_link_libraries(woff2_sapi_wrapper
 
 add_sapi_library(woff2_sapi
   FUNCTIONS
-    WOFF2_ConvertWOFF2ToTTF
-    WOFF2_ConvertTTFToWOFF2
-    WOFF2_Free
+    MaxWOFF2CompressedSize
+    ConvertWOFF2ToTTF
+    ConvertTTFToWOFF2
+    ComputeWOFF2FinalSize
   INPUTS
     "woff2_wrapper.h"
   LIBRARY
@@ -62,16 +63,5 @@ target_include_directories(woff2_sapi INTERFACE
 )
 
 if(BUILD_TESTING AND SAPI_BUILD_TESTING)
-  enable_testing()
-  add_executable(woff2_sapi_test
-    woff2_sapi_test.cc
-  )
-  target_link_libraries(woff2_sapi_test PRIVATE
-    absl::flags
-    absl::flags_parse
-    sapi_contrib::woff2
-    sapi::test_main
-  )
-  gtest_discover_tests(woff2_sapi_test PROPERTIES
-    ENVIRONMENT "TEST_DATA_DIR=${PROJECT_SOURCE_DIR}/testdata")
+  add_subdirectory(test)
 endif()
